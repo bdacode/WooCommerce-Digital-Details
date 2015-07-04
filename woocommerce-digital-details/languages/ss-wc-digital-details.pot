@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Digital Details v0.0.1\n"
-"POT-Creation-Date: 2015-07-04 03:05+0200\n"
+"POT-Creation-Date: 2015-07-04 06:04+0200\n"
 "PO-Revision-Date: 2014-03-22 17:20+0100\n"
 "Last-Translator: Sebastien <sebastien@ocean-themes.com>\n"
 "Language-Team: Sebs Studio <sebastien@sebs-studio.com>\n"
@@ -22,80 +22,110 @@ msgstr ""
 msgid "Digital Details"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:49
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:50
 msgid "Licence"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:51
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:52
 msgid "Enter the licence that is associated with this file."
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:71
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:80
-#: woocommerce-digital-details.php:418 woocommerce-digital-details.php:420
-#: woocommerce-digital-details.php:422
-msgid "File Types"
-msgstr ""
-
 #: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:74
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:90
-msgid "Select the file types this item has."
-msgstr ""
-
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:81
-msgid "Select the file types"
-msgstr ""
-
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:97
 msgid "File Size"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:104
-msgid "Enter the size of the file in Mega Bytes"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:76
+msgid "Enter the size of the file. e.g. 1KB, 1MB or 1GB"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:113
-msgid "Is this file a web font?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:85
+msgid "Web Font?"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:122
-msgid "Is this file Tileable?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:86
+msgid "Enable if this file is a Web Font."
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:131
-msgid "Is this file layered?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:95
+msgid "Tileable?"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:140
-msgid "Does this file have a fluid layout?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:96
+msgid "Enable if this file is Tileable."
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:149
-msgid "Does this file have a fixed layout?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:105
+msgid "Layered?"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:158
-msgid "Does this file have a responsive layout?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:106
+msgid "Enable if this file is Layered."
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:167
-msgid "Is this file a vector?"
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:115
+msgid "Fluid Layout?"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:176
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:116
+msgid "Enable if this file has a Fluid Layout."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:125
+msgid "Fixed Layout?"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:126
+msgid "Enable if this file has a Fixed Layout."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:135
+msgid "Responsive Layout?"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:136
+msgid "Enable if this file has a Responsive Layout."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:145
+msgid "Vector Format?"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:146
+msgid "Enable if this file has a Vector format."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:155
+msgid "Dimensions"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:156
+#, php-format
+msgid "Enter the dimensions of the digital item by \"%s\" seperating the values."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:157
+msgid "e.g. 8.5 x 11 in"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:166
 msgid "Orientation"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:178
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:168
 msgid "Landscape"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:179
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:169
 msgid "Portrait"
 msgstr ""
 
-#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:188
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:181
 msgid "Requirements"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:184
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:195
+msgid "Select the requirements this file needs to edit"
 msgstr ""
 
 #: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:203
@@ -104,6 +134,43 @@ msgstr ""
 
 #: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:206
 msgid "Enter the DPI size of the file."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:221
+msgid "Columns"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:224
+msgid "Enter the amount of columns this theme has."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:239
+msgid "Minimum Browser"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:242
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:250
+msgid "Select the browsers this theme works in."
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:243
+msgid "IE 9+"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:244
+msgid "Firefox 14+"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:245
+msgid "Chrome 19+"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:246
+msgid "Safari 5.1+"
+msgstr ""
+
+#: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:247
+msgid "Opera 12+"
 msgstr ""
 
 #: woocommerce-digital-details.php:168 woocommerce-digital-details.php:180
@@ -141,6 +208,11 @@ msgstr ""
 msgid ""
 "Sorry, <strong>%s</strong> requires WooCommerce %s or higher. Please update "
 "WooCommerce for %s to work."
+msgstr ""
+
+#: woocommerce-digital-details.php:418 woocommerce-digital-details.php:420
+#: woocommerce-digital-details.php:422
+msgid "File Types"
 msgstr ""
 
 #: woocommerce-digital-details.php:421

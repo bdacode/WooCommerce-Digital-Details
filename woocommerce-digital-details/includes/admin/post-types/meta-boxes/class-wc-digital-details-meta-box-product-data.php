@@ -36,6 +36,7 @@ function ss_wc_add_digital_details_tab( $product_data_tabs ){
  * @uses   woocommerce_wp_checkbox()
  * @uses   woocommerce_wp_text_input()
  * @uses   woocommerce_wp_select()
+ * @uses   ss_wc_wp_select()
  */
 function ss_wc_write_digital_details_tab_panel() {
 	echo '<div id="digital_details_product_data" class="panel woocommerce_options_panel">';
@@ -53,55 +54,26 @@ function ss_wc_write_digital_details_tab_panel() {
 		)
 	);
 
-	$file_types_args = array(
-		'type'         => 'product',
-		'orderby'      => 'name',
-		'order'        => 'ASC',
-		'hide_empty'   => 1,
-		'hierarchical' => 1,
-		'taxonomy'     => 'file_types'
-	);
-	$file_types = get_categories( $file_types_args );
-	print_r($file_types);
-
-	// File Types needs a select input that fetches the new categories
-	woocommerce_wp_select(
+	// Product Category
+	/*ss_wc_wp_select(
 		array(
-			'id'          => '_file_types',
-			'label'       => __( 'File Types', 'ss-wc-digital-details' ),
-			'type'    => 'multiselect',
-			'desc_tip'    => true,
-			'description' => __( 'Select the file types this item has.', 'ss-wc-digital-details' ),
-			'options'     => $file_types
+			'id'      => '_product_category',
+			'label'   => __( 'Product Category', 'ss-wc-digital-details' ),
+			'options' => array(
+				'landscape' => __( 'Landscape', 'ss-wc-digital-details' ),
+				'portrait'  => __( 'Portrait', 'ss-wc-digital-details' ),
+			),
+			'wrapper_class' => 'hide_if_variable',
 		)
-	);
+	);*/
 
-	?>
-	<p class="form-field"><label for="file_types"><?php _e( 'File Types', 'ss-wc-digital-details' ); ?></label>
-	<input type="hidden" class="wc-product-search" style="width: 50%;" id="file_types" name="_file_types" data-placeholder="<?php _e( 'Select the file types', 'ss-wc-digital-details' ); ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php
-	$file_types = array_filter( array_map( 'string', (array) get_post_meta( $post->ID, '_file_types', true ) ) );
-	$json_ids   = array();
-
-	foreach ( $file_types as $file_type ) {
-		$json_ids[ $file_type ] = array( $file_type->category_nicename => $file_type->cat_name );
-	}
-
-	echo esc_attr( json_encode( $json_ids ) );
-	?>" value="<?php echo implode( ',', array_keys( $json_ids ) ); ?>" /> <img class="help_tip" data-tip='<?php _e( 'Select the file types this item has.', 'ss-wc-digital-details' ) ?>' src="<?php echo WC()->plugin_url(); ?>/assets/images/help.png" height="16" width="16" /></p>
-
-	<?php
 	// File Size
 	woocommerce_wp_text_input(
 		array(
 			'id'            => '_file_size',
 			'label'         => __( 'File Size', 'ss-wc-digital-details' ),
-			'type'          => 'number',
-			'custom_attributes' => array(
-				'step' => 'any',
-				'min'  => '0'
-			),
 			'desc_tip'      => true,
-			'description'   => __( 'Enter the size of the file in Mega Bytes', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enter the size of the file. e.g. 1KB, 1MB or 1GB', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -110,7 +82,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_web_font',
-			'label'         => __( 'Is this file a web font?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Web Font?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file is a Web Font.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -119,7 +92,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_tileable',
-			'label'         => __( 'Is this file Tileable?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Tileable?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file is Tileable.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -128,7 +102,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_layered',
-			'label'         => __( 'Is this file layered?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Layered?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file is Layered.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -137,7 +112,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_fluid_layout',
-			'label'         => __( 'Does this file have a fluid layout?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Fluid Layout?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file has a Fluid Layout.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -146,7 +122,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_fixed_layout',
-			'label'         => __( 'Does this file have a fixed layout?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Fixed Layout?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file has a Fixed Layout.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -155,7 +132,8 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_responsive_layout',
-			'label'         => __( 'Does this file have a responsive layout?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Responsive Layout?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file has a Responsive Layout.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -164,7 +142,19 @@ function ss_wc_write_digital_details_tab_panel() {
 	woocommerce_wp_checkbox(
 		array(
 			'id'            => '_is_vector',
-			'label'         => __( 'Is this file a vector?', 'ss-wc-digital-details' ),
+			'label'         => __( 'Vector Format?', 'ss-wc-digital-details' ),
+			'description'   => __( 'Enable if this file has a Vector format.', 'ss-wc-digital-details' ),
+			'wrapper_class' => 'hide_if_variable',
+		)
+	);
+
+	// Dimensions
+	woocommerce_wp_textarea_input(
+		array(
+			'id'            => '_dimensions',
+			'label'         => __( 'Dimensions', 'ss-wc-digital-details' ),
+			'placeholder'   => sprintf( __( 'Enter the dimensions of the digital item by "%s" seperating the values.', 'ss-wc-digital-details' ), WC_DELIMITER ),
+			'description'   => __( 'e.g. 8.5 x 11 in', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
@@ -172,27 +162,37 @@ function ss_wc_write_digital_details_tab_panel() {
 	// Orientation
 	woocommerce_wp_select(
 		array(
-			'id'      => '_orientation',
-			'label'   => __( 'Orientation', 'ss-wc-digital-details' ),
-			'options' => array(
+			'id'            => '_orientation',
+			'label'         => __( 'Orientation', 'ss-wc-digital-details' ),
+			'options'       => array(
 				'landscape' => __( 'Landscape', 'ss-wc-digital-details' ),
 				'portrait'  => __( 'Portrait', 'ss-wc-digital-details' ),
 			),
+			'wrapper_class' => 'show_if_photo',
+			'style'         => 'width: 150px;'
 		)
 	);
 
 	// Requirements
-	woocommerce_wp_select(
+	// @filter ss_wc_digital_details_requirement_options
+	ss_wc_wp_select(
 		array(
 			'id'      => '_requirements',
 			'label'   => __( 'Requirements', 'ss-wc-digital-details' ),
 			'type'    => 'multiselect',
 			'options' => apply_filters( 'ss_wc_digital_details_requirement_options', array(
+				''                   => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
+				'adobe_cs1+'         => 'Adobe CS1+',
+				'adobe_cs2+'         => 'Adobe CS2+',
+				'adobe_cs3+'         => 'Adobe CS3+',
+				'adobe_cs4+'         => 'Adobe CS4+',
 				'adobe_cs5+'         => 'Adobe CS5+',
 				'adobe_photoshop'    => 'Adobe Photoshop',
-				'adobe_indesign'     => 'Adobe Indesign',
+				'adobe_indesign'     => 'Adobe InDesign',
+				'adobe_illustrator'  => 'Adobe Illustrator',
 				'adobe_after_effcts' => 'Adobe After Effects'
-			) )
+			) ),
+			'placeholder' => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
 		)
 	);
 
@@ -206,11 +206,48 @@ function ss_wc_write_digital_details_tab_panel() {
 			'description'       => __( 'Enter the DPI size of the file.', 'ss-wc-digital-details' ),
 			'type'              => 'number',
 			'custom_attributes' => array(
-				'step' 	=> 'any',
-				'min'	=> '72'
+				'step' => 'any',
+				'min'  => '72'
 			),
 			'wrapper_class'     => 'hide_if_variable',
-			'style'             => 'width:80px;'
+			'style'             => 'width: 60px;'
+		)
+	);
+
+	// Columns
+	woocommerce_wp_text_input(
+		array(
+			'id'                => '_columns',
+			'label'             => __( 'Columns', 'ss-wc-digital-details' ),
+			'placeholder'       => '12',
+			'desc_tip'          => true,
+			'description'       => __( 'Enter the amount of columns this theme has.', 'ss-wc-digital-details' ),
+			'type'              => 'number',
+			'custom_attributes' => array(
+				'step' => 'any',
+				'min'  => '1'
+			),
+			'wrapper_class'     => 'hide_if_variable',
+			'style'             => 'width: 60px;'
+		)
+	);
+
+	// Minimum Browser Requirement
+	ss_wc_wp_select(
+		array(
+			'id'      => '_minimum_browser_requirement',
+			'label'   => __( 'Minimum Browser', 'ss-wc-digital-details' ),
+			'type'    => 'multiselect',
+			'options' => apply_filters( 'ss_wc_digital_details_min_browser_options', array(
+				''           => __( 'Select the browsers this theme works in.', 'ss-wc-digital-details' ),
+				'ie9'        => __( 'IE 9+', 'ss-wc-digital-details' ),
+				'firefox_14' => __( 'Firefox 14+', 'ss-wc-digital-details' ),
+				'chrome_19'  => __( 'Chrome 19+', 'ss-wc-digital-details' ),
+				'safari_5'   => __( 'Safari 5.1+', 'ss-wc-digital-details' ),
+				'opera_12'   => __( 'Opera 12+', 'ss-wc-digital-details' ),
+			) ),
+			'wrapper_class' => 'hide_if_variable',
+			'placeholder'   => __( 'Select the browsers this theme works in.', 'ss-wc-digital-details' ),
 		)
 	);
 

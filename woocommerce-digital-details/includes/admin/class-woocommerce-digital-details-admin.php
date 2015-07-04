@@ -37,6 +37,7 @@ class SS_WC_Digital_Details_Admin {
 		switch ( $screen->id ) {
 
 			case 'product' :
+				include( 'ss-wc-meta-box-functions.php' );
 				include( 'post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php' );
 				break;
 
