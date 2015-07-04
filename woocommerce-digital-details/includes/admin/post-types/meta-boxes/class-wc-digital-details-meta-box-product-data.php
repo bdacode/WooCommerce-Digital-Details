@@ -273,18 +273,96 @@ function ss_wc_write_digital_details_tab_panel() {
  * @param  $post_id
  */
 function ss_wc_save_digital_details_tab_panel( $post_id ) {
-	$wc_product_digital_details = isset( $_POST['_set_digital_details'] ) ? 'yes' : '';
-	$wc_digital_details_label   = trim( strip_tags( $_POST['_digital_details_label'] ) );
+	// Checkbox fields
+	$is_web_font     = isset( $_POST['_is_web_font'] ) ? 'yes' : '';
+	$is_tileable     = isset( $_POST['_is_tileable'] ) ? 'yes' : '';
+	$is_layered      = isset( $_POST['_is_layered'] ) ? 'yes' : '';
+	$is_fluid_layout = isset( $_POST['_is_fluid_layout'] ) ? 'yes' : '';
+	$is_fixed_layout = isset( $_POST['_is_fixed_layout'] ) ? 'yes' : '';
+	$is_responsive   = isset( $_POST['_is_responsive_layout'] ) ? 'yes' : '';
+	$is_vector       = isset( $_POST['_is_vector'] ) ? 'yes' : '';
 
-	if ( !empty( $wc_product_digital_details ) && $wc_product_digital_details == 'yes' ) {
-		update_post_meta( $post_id, '_set_digital_details', $wc_product_digital_details );
+	// Is WebFont?
+	if ( !empty( $is_web_font ) && $is_web_font == 'yes' ) {
+		update_post_meta( $post_id, '_is_web_font', $is_web_font );
 	} else {
-		delete_post_meta( $post_id, '_set_digital_details' );
+		delete_post_meta( $post_id, '_is_web_font' );
 	}
 
-	if ( isset( $wc_digital_details_label ) ) {
-		update_post_meta( $post_id, '_digital_details_label', $wc_digital_details_label );
+	// Is Tileable?
+	if ( !empty( $is_tileable ) && $is_web_font == 'yes' ) {
+		update_post_meta( $post_id, '_is_tileable', $is_tileable );
 	} else {
-		delete_post_meta( $post_id, '_digital_details_label' );
+		delete_post_meta( $post_id, '_is_tileable' );
 	}
+
+	// Is Layered?
+	if ( !empty( $is_layered ) && $is_layered == 'yes' ) {
+		update_post_meta( $post_id, '_is_layered', $is_layered );
+	} else {
+		delete_post_meta( $post_id, '_is_layered' );
+	}
+
+	// Is Fluid Layout?
+	if ( !empty( $is_fluid_layout ) && $is_fluid_layout == 'yes' ) {
+		update_post_meta( $post_id, '_is_fluid_layout', $is_fluid_layout );
+	} else {
+		delete_post_meta( $post_id, '_is_fluid_layout' );
+	}
+
+	// Is Fixed Layout?
+	if ( !empty( $is_fixed_layout ) && $is_fixed_layout == 'yes' ) {
+		update_post_meta( $post_id, '_is_fixed_layout', $is_fixed_layout );
+	} else {
+		delete_post_meta( $post_id, '_is_fixed_layout' );
+	}
+
+	// Is Responsive?
+	if ( !empty( $is_responsive ) && $is_responsive == 'yes' ) {
+		update_post_meta( $post_id, '_is_responsive', $is_responsive );
+	} else {
+		delete_post_meta( $post_id, '_is_responsive' );
+	}
+
+	// Is Vector?
+	if ( !empty( $is_vector ) && $is_vector == 'yes' ) {
+		update_post_meta( $post_id, '_is_vector', $is_vector );
+	} else {
+		delete_post_meta( $post_id, '_is_vector' );
+	}
+
+	// Text fields
+	$licence   = trim( strip_tags( $_POST['_licence'] ) );
+	$file_size = trim( strip_tags( $_POST['_file_size'] ) );
+	$dpi_size  = trim( strip_tags( $_POST['_dpi_size'] ) );
+	$columns   = trim( strip_tags( $_POST['_columns'] ) );
+
+	// Licence
+	if ( isset( $licence ) ) {
+		update_post_meta( $post_id, '_licence', $licence );
+	} else {
+		delete_post_meta( $post_id, '_licence' );
+	}
+
+	// File Size
+	if ( isset( $file_size ) ) {
+		update_post_meta( $post_id, '_file_size', $file_size );
+	} else {
+		delete_post_meta( $post_id, '_file_size' );
+	}
+
+	// DPI Size
+	if ( isset( $dpi_size ) ) {
+		update_post_meta( $post_id, '_dpi_size', $dpi_size );
+	} else {
+		delete_post_meta( $post_id, '_dpi_size' );
+	}
+
+	// Columns
+	if ( isset( $columns ) ) {
+		update_post_meta( $post_id, '_columns', $columns );
+	} else {
+		delete_post_meta( $post_id, '_columns' );
+	}
+
 } // END ss_wc_save_digital_details_tab_panel()

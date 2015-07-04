@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Digital Details
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-digital-details/
  * Description:       Display additional details for digital products. Useful for creating a marketplace store.
- * Version:           0.0.3
+ * Version:           0.0.4
  * Author:            Sebs Studio
  * Author URI:        http://www.sebs-studio.com
  * Developer:         Sébastien Dumont
@@ -42,7 +42,7 @@ if ( ! class_exists( 'SS_WC_Digital_Details' ) ) {
 /**
  * Main WooCommerce Digital Details Class
  *
- * @version 0.0.3
+ * @version 0.0.4
  */
 final class SS_WC_Digital_Details {
 
@@ -89,7 +89,7 @@ final class SS_WC_Digital_Details {
 	 * @access public
 	 * @var    string
 	 */
-	public $version = "0.0.3";
+	public $version = "0.0.4";
 
 	/**
 	 * The WordPress version the plugin requires minumum.
