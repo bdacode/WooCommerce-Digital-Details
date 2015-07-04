@@ -25,6 +25,7 @@ function ss_wc_wp_select( $field ) {
 	$field['class']         = isset( $field['class'] ) ? $field['class'] : 'select short';
 	$field['style']         = isset( $field['style'] ) ? $field['style'] : '';
 	$field['wrapper_class'] = isset( $field['wrapper_class'] ) ? $field['wrapper_class'] : '';
+	$field['default']       = isset( $field['default'] ) ? $field['default'] : '';
 	$field['value']         = isset( $field['value'] ) ? $field['value'] : get_post_meta( $thepostid, $field['id'], true );
 	$field['type']          = isset( $field['type'] ) ? $field['type'] : 'select';
 
@@ -40,16 +41,25 @@ function ss_wc_wp_select( $field ) {
 
 	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><select id="' . esc_attr( $field['id'] ) . '" name="' . esc_attr( $field['id'] );
 
-	// If type is Multi-Select
-	if ( $field['type'] == 'multiselect' ) echo '"[]';
+	if ( $field['type'] == 'multiselect' ) echo '[]';
+	echo '"';
 	echo ( $field['type'] == 'multiselect' ) ? 'multiple="multiple"' : '';
 
-	echo ' class="' . esc_attr( $field['class'] );
-	if ( $field['type'] == 'multiselect' ) echo esc_attr( ' wc-enhanced-select' );
-	echo '" style="' . esc_attr( $field['style'] ) . '" data-placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . '>';
+	echo ' class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" data-placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . '>';
+
+	$option_value = isset( $field['value'] ) ? $field['value'] : $field['default'];
 
 	foreach ( $field['options'] as $key => $value ) {
-		echo '<option value="' . esc_attr( $key ) . '" ' . selected( esc_attr( $field['value'] ), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
+		echo '<option value="' . esc_attr( $key ) . '"';
+
+		if ( is_array( $option_value ) ) {
+			selected( in_array( $key, $option_value ), true );
+		}
+		else {
+			selected( esc_attr( $option_value ), esc_attr( $key ), false );
+		}
+
+		echo '>' . esc_html( $value ) . '</option>';
 	}
 
 	echo '</select> ';

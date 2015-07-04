@@ -74,7 +74,9 @@ function ss_wc_write_digital_details_tab_panel() {
 			'label'         => __( 'File Size', 'ss-wc-digital-details' ),
 			'desc_tip'      => true,
 			'description'   => __( 'Enter the size of the file. e.g. 1KB, 1MB or 1GB', 'ss-wc-digital-details' ),
+			'placeholder'   => __( '1.5MB', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
+			'style'         => 'width: 150px;'
 		)
 	);
 
@@ -154,6 +156,7 @@ function ss_wc_write_digital_details_tab_panel() {
 			'id'            => '_dimensions',
 			'label'         => __( 'Dimensions', 'ss-wc-digital-details' ),
 			'placeholder'   => sprintf( __( 'Enter the dimensions of the digital item by "%s" seperating the values.', 'ss-wc-digital-details' ), WC_DELIMITER ),
+			'desc_tip'      => true,
 			'description'   => __( 'e.g. 8.5 x 11 in', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
 		)
@@ -177,11 +180,11 @@ function ss_wc_write_digital_details_tab_panel() {
 	// @filter ss_wc_digital_details_requirement_options
 	ss_wc_wp_select(
 		array(
-			'id'      => '_requirements',
-			'label'   => __( 'Requirements', 'ss-wc-digital-details' ),
-			'type'    => 'multiselect',
-			'options' => apply_filters( 'ss_wc_digital_details_requirement_options', array(
-				''                   => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
+			'id'          => '_requirements',
+			'label'       => __( 'Requirements', 'ss-wc-digital-details' ),
+			'type'        => 'multiselect',
+			'options'     => apply_filters( 'ss_wc_digital_details_requirement_options', array(
+				''                   => '',
 				'adobe_cs1+'         => 'Adobe CS1+',
 				'adobe_cs2+'         => 'Adobe CS2+',
 				'adobe_cs3+'         => 'Adobe CS3+',
@@ -192,7 +195,10 @@ function ss_wc_write_digital_details_tab_panel() {
 				'adobe_illustrator'  => 'Adobe Illustrator',
 				'adobe_after_effcts' => 'Adobe After Effects'
 			) ),
+			'default'     => '',
 			'placeholder' => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
+			'class'       => 'wc-enhanced-select chosen_select',
+			'style'       => 'min-width: 350px;',
 		)
 	);
 
@@ -235,19 +241,22 @@ function ss_wc_write_digital_details_tab_panel() {
 	// Minimum Browser Requirement
 	ss_wc_wp_select(
 		array(
-			'id'      => '_minimum_browser_requirement',
-			'label'   => __( 'Minimum Browser', 'ss-wc-digital-details' ),
-			'type'    => 'multiselect',
-			'options' => apply_filters( 'ss_wc_digital_details_min_browser_options', array(
-				''           => __( 'Select the browsers this theme works in.', 'ss-wc-digital-details' ),
+			'id'             => '_minimum_browser_requirement',
+			'label'          => __( 'Minimum Browser', 'ss-wc-digital-details' ),
+			'type'           => 'multiselect',
+			'options'        => apply_filters( 'ss_wc_digital_details_min_browser_options', array(
+				''           => '',
 				'ie9'        => __( 'IE 9+', 'ss-wc-digital-details' ),
 				'firefox_14' => __( 'Firefox 14+', 'ss-wc-digital-details' ),
 				'chrome_19'  => __( 'Chrome 19+', 'ss-wc-digital-details' ),
 				'safari_5'   => __( 'Safari 5.1+', 'ss-wc-digital-details' ),
 				'opera_12'   => __( 'Opera 12+', 'ss-wc-digital-details' ),
 			) ),
-			'wrapper_class' => 'hide_if_variable',
-			'placeholder'   => __( 'Select the browsers this theme works in.', 'ss-wc-digital-details' ),
+			'default'        => '',
+			'wrapper_class'  => 'hide_if_variable',
+			'placeholder'    => __( 'Select the browsers this theme works in.', 'ss-wc-digital-details' ),
+			'class'          => 'wc-enhanced-select chosen_select',
+			'style'          => 'min-width: 350px;',
 		)
 	);
 
@@ -257,7 +266,7 @@ function ss_wc_write_digital_details_tab_panel() {
 } // END ss_wc_write_digital_details_tab_panel()
 
 /**
- * Saves the product options for single products.
+ * Saves the digital details.
  *
  * @since  0.0.1
  * @access public
