@@ -45,7 +45,7 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	$licence = get_post_meta( $atts['product_id'], '_licence', true );
 	// File Size
 	$file_size = get_post_meta( $atts['product_id'], '_file_size', true );
-	// Is WebFont?
+	// Is Web Font?
 	$is_web_font = get_post_meta( $atts['product_id'], '_is_web_font', true );
 	// Is Tileable?
 	$is_tileable = get_post_meta( $atts['product_id'], '_is_tileable', true );
@@ -55,8 +55,8 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	$is_fluid_layout = get_post_meta( $atts['product_id'], '_is_fluid_layout', true );
 	// Is Fixed Layout?
 	$is_fixed_layout = get_post_meta( $atts['product_id'], '_is_fixed_layout', true );
-	// Is Responsive?
-	$is_responsive = get_post_meta( $atts['product_id'], '_is_responsive', true );
+	// Is Responsive Layout?
+	$is_responsive = get_post_meta( $atts['product_id'], '_is_responsive_layout', true );
 	// Is Vector?
 	$is_vector = get_post_meta( $atts['product_id'], '_is_vector', true );
 	// DPI Size
@@ -71,6 +71,8 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	$minimum_browser_requirements = get_post_meta( $atts['product_id'], '_minimum_browser_requirement', true );
 	// Dimensions
 	$dimensions = get_post_meta( $atts['product_id'], '_dimensions', true );
+	// Message to Customers
+	$message_to_customers = get_post_meta( $atts['product_id'], '_message_to_customers', true );
 
 	// Now we display the post meta data.
 
