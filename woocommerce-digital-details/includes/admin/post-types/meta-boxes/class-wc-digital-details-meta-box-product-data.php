@@ -6,7 +6,7 @@
  *
  * @author  Sebs Studio
  * @package WooCommerce Digital Details/Admin/Post Types/Meta Boxes
- * @version 0.0.1
+ * @version 0.0.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -53,19 +53,6 @@ function ss_wc_write_digital_details_tab_panel() {
 			'wrapper_class' => 'hide_if_variable',
 		)
 	);
-
-	// Product Category
-	/*ss_wc_wp_select(
-		array(
-			'id'      => '_product_category',
-			'label'   => __( 'Product Category', 'ss-wc-digital-details' ),
-			'options' => array(
-				'landscape' => __( 'Landscape', 'ss-wc-digital-details' ),
-				'portrait'  => __( 'Portrait', 'ss-wc-digital-details' ),
-			),
-			'wrapper_class' => 'hide_if_variable',
-		)
-	);*/
 
 	// File Size
 	woocommerce_wp_text_input(
@@ -163,16 +150,20 @@ function ss_wc_write_digital_details_tab_panel() {
 	);
 
 	// Orientation
-	woocommerce_wp_select(
+	ss_wc_wp_select(
 		array(
 			'id'            => '_orientation',
 			'label'         => __( 'Orientation', 'ss-wc-digital-details' ),
 			'options'       => array(
+				''          => '',
 				'landscape' => __( 'Landscape', 'ss-wc-digital-details' ),
 				'portrait'  => __( 'Portrait', 'ss-wc-digital-details' ),
 			),
+			'default'       => '',
 			'wrapper_class' => 'show_if_photo',
-			'style'         => 'width: 150px;'
+			'placeholder'   => __( 'Select the orientation of this photo.', 'ss-wc-digital-details' ),
+			'class'         => 'wc-enhanced-select chosen_select',
+			'style'         => 'width: 300px;'
 		)
 	);
 
@@ -180,10 +171,10 @@ function ss_wc_write_digital_details_tab_panel() {
 	// @filter ss_wc_digital_details_requirement_options
 	ss_wc_wp_select(
 		array(
-			'id'          => '_requirements',
-			'label'       => __( 'Requirements', 'ss-wc-digital-details' ),
-			'type'        => 'multiselect',
-			'options'     => apply_filters( 'ss_wc_digital_details_requirement_options', array(
+			'id'            => '_requirements',
+			'label'         => __( 'Requirements', 'ss-wc-digital-details' ),
+			'type'          => 'multiselect',
+			'options'       => apply_filters( 'ss_wc_digital_details_requirement_options', array(
 				''                   => '',
 				'adobe_cs1+'         => 'Adobe CS1+',
 				'adobe_cs2+'         => 'Adobe CS2+',
@@ -195,10 +186,11 @@ function ss_wc_write_digital_details_tab_panel() {
 				'adobe_illustrator'  => 'Adobe Illustrator',
 				'adobe_after_effcts' => 'Adobe After Effects'
 			) ),
-			'default'     => '',
-			'placeholder' => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
-			'class'       => 'wc-enhanced-select chosen_select',
-			'style'       => 'min-width: 350px;',
+			'default'       => '',
+			'wrapper_class' => 'hide_if_variable',
+			'placeholder'   => __( 'Select the requirements this file needs to edit', 'ss-wc-digital-details' ),
+			'class'         => 'wc-enhanced-select chosen_select',
+			'style'         => 'min-width: 350px;',
 		)
 	);
 
@@ -339,30 +331,66 @@ function ss_wc_save_digital_details_tab_panel( $post_id ) {
 
 	// Licence
 	if ( isset( $licence ) ) {
-		update_post_meta( $post_id, '_licence', $licence );
+		update_post_meta( $post_id, '_licence', esc_attr( $licence ) );
 	} else {
 		delete_post_meta( $post_id, '_licence' );
 	}
 
 	// File Size
 	if ( isset( $file_size ) ) {
-		update_post_meta( $post_id, '_file_size', $file_size );
+		update_post_meta( $post_id, '_file_size', esc_attr( $file_size ) );
 	} else {
 		delete_post_meta( $post_id, '_file_size' );
 	}
 
 	// DPI Size
 	if ( isset( $dpi_size ) ) {
-		update_post_meta( $post_id, '_dpi_size', $dpi_size );
+		update_post_meta( $post_id, '_dpi_size', esc_attr( $dpi_size ) );
 	} else {
 		delete_post_meta( $post_id, '_dpi_size' );
 	}
 
 	// Columns
 	if ( isset( $columns ) ) {
-		update_post_meta( $post_id, '_columns', $columns );
+		update_post_meta( $post_id, '_columns', esc_attr( $columns ) );
 	} else {
 		delete_post_meta( $post_id, '_columns' );
+	}
+
+	// Select Fields
+	$orientation                 = $_POST['_orientation'];
+	$requirements                = $_POST['_requirements'];
+	$minimum_browser_requirement = $_POST['_minimum_browser_requirement'];
+
+	// Orientation
+	if ( isset( $orientation ) ) {
+		update_post_meta( $post_id, '_orientation', esc_attr( $orientation ) );
+	} else {
+		delete_post_meta( $post_id, '_orientation' );
+	}
+
+	// Requirements
+	if ( isset( $requirements ) ) {
+		update_post_meta( $post_id, '_requirements', esc_attr( $requirements ) );
+	} else {
+		delete_post_meta( $post_id, '_requirements' );
+	}
+
+	// Minimum Browser Requirement
+	if ( isset( $minimum_browser_requirement ) ) {
+		update_post_meta( $post_id, '_minimum_browser_requirement', esc_attr( $minimum_browser_requirement ) );
+	} else {
+		delete_post_meta( $post_id, '_minimum_browser_requirement' );
+	}
+
+	// Textarea Fields
+	$dimensions = $_POST['_dimensions'];
+
+	// Dimensions
+	if ( isset( $dimensions ) ) {
+		update_post_meta( $post_id, '_dimensions', esc_html( $dimensions ) );
+	} else {
+		delete_post_meta( $post_id, '_dimensions' );
 	}
 
 } // END ss_wc_save_digital_details_tab_panel()
