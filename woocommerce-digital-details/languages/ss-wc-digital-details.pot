@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Digital Details v0.0.1\n"
-"POT-Creation-Date: 2015-07-05 21:12+0200\n"
+"POT-Creation-Date: 2015-07-06 03:49+0200\n"
 "PO-Revision-Date: 2014-03-22 17:20+0100\n"
 "Last-Translator: Sebastien <sebastien@ocean-themes.com>\n"
 "Language-Team: Sebs Studio <sebastien@sebs-studio.com>\n"
@@ -30,6 +30,7 @@ msgid "Enter the licence that is associated with this file."
 msgstr ""
 
 #: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:64
+#: includes/woocommerce-digital-details-functions.php:120
 msgid "File Size"
 msgstr ""
 
@@ -134,6 +135,7 @@ msgid "Select the browsers this theme works in."
 msgstr ""
 
 #: includes/admin/post-types/meta-boxes/class-wc-digital-details-meta-box-product-data.php:200
+#: includes/woocommerce-digital-details-functions.php:138
 msgid "Dimensions"
 msgstr ""
 
@@ -200,6 +202,28 @@ msgid ""
 "image."
 msgstr ""
 
+#: includes/woocommerce-digital-details-functions.php:78
+msgid "Product Details"
+msgstr ""
+
+#: includes/woocommerce-digital-details-functions.php:83
+msgid "Date"
+msgstr ""
+
+#: includes/woocommerce-digital-details-functions.php:91
+msgid "License"
+msgstr ""
+
+#: includes/woocommerce-digital-details-functions.php:99
+#: woocommerce-digital-details.php:418 woocommerce-digital-details.php:420
+#: woocommerce-digital-details.php:422
+msgid "File Types"
+msgstr ""
+
+#: includes/woocommerce-digital-details-functions.php:129
+msgid "Layered"
+msgstr ""
+
 #: woocommerce-digital-details.php:168 woocommerce-digital-details.php:180
 msgid "Cheatin&#8217; huh?"
 msgstr ""
@@ -235,11 +259,6 @@ msgstr ""
 msgid ""
 "Sorry, <strong>%s</strong> requires WooCommerce %s or higher. Please update "
 "WooCommerce for %s to work."
-msgstr ""
-
-#: woocommerce-digital-details.php:418 woocommerce-digital-details.php:420
-#: woocommerce-digital-details.php:422
-msgid "File Types"
 msgstr ""
 
 #: woocommerce-digital-details.php:421

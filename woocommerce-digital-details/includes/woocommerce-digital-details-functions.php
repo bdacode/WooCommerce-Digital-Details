@@ -75,6 +75,73 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	$message_to_customers = get_post_meta( $atts['product_id'], '_message_to_customers', true );
 
 	// Now we display the post meta data.
+	echo '<p>' . __( 'Product Details', 'ss-wc-digital-details' ) . '</p>';
+
+	echo '<ul class="product-meta digital-details">' .
+		. '<li>
+			<dl>
+				<dt><i class="icon-calendar"></i>' . __( 'Date', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . the_date( 'j M, Y' ) . '</dd>
+			</dl>
+		</li>';
+
+	if ( !empty( $licence ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-page"></i>' . __( 'License', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . $licence . '</dd>
+			</dl>
+		</li>';
+	} // END if licence
+
+	echo '<li>
+			<dl>
+				<dt><i class="icon-filetype"></i>' . __( 'File Types', 'ss-wc-digital-details' ) . ' <i class="icon-chris"></i> </dt>
+				<dd class="filetypes"> ';
+
+				$terms = get_the_terms( $atts['product_id'], 'file_types' );
+				if ( $terms && ! is_wp_error( $terms ) ) {
+					$file_type = array();
+
+					foreach ( $terms as $term ) {
+						$file_type[] = $term->name;
+					}
+
+					$file_types = join( ", ", $file_type );
+				}
+				echo $file_types . '</dd>
+			</dl>
+		</li>';
+	// END if file types
+
+	if ( !empty( $file_size ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-anchor"></i>' . __( 'File Size', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . $file_size . '</dd>
+			</dl>
+		</li>';
+	} // END if file size
+
+	if ( !empty( $layered ) && $layered == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-layered"></i>' . __( 'Layered', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if layered
+
+	if ( !empty( $dimensions ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-size"></i>'. __( 'Dimensions', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . $dimensions . '</dd>
+			</dl>
+		</li>';
+	} // END if dimensions
+
+	echo '</ul>'; // End of list
 
 	// You can add anything after everything has been displayed.
 	do_action( 'ss_wc_shortcode_after_digital_details' );
