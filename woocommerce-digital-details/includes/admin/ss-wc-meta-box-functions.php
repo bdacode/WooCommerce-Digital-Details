@@ -39,15 +39,15 @@ function ss_wc_wp_select( $field ) {
 		}
 	}
 
+	$option_value = !empty( $field['value'] ) ? $field['value'] : $field['default'];
+
 	echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ' . esc_attr( $field['wrapper_class'] ) . '"><label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label><select id="' . esc_attr( $field['id'] ) . '" name="' . esc_attr( $field['id'] );
 
 	if ( $field['type'] == 'multiselect' ) echo '[]';
 	echo '"';
-	echo ( $field['type'] == 'multiselect' ) ? 'multiple="multiple"' : '';
+	echo ( $field['type'] == 'multiselect' ) ? ' multiple="multiple"' : '';
 
 	echo ' class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" data-placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . '>';
-
-	$option_value = isset( $field['value'] ) ? $field['value'] : $field['default'];
 
 	foreach ( $field['options'] as $key => $value ) {
 		echo '<option value="' . esc_attr( $key ) . '"';
@@ -56,7 +56,7 @@ function ss_wc_wp_select( $field ) {
 			selected( in_array( $key, $option_value ), true );
 		}
 		else {
-			selected( esc_attr( $option_value ), esc_attr( $key ), false );
+			selected( esc_attr( $option_value ), esc_attr( $key ) );
 		}
 
 		echo '>' . esc_html( $value ) . '</option>';

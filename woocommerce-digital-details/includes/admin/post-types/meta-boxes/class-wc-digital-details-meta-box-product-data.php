@@ -53,7 +53,7 @@ function ss_wc_write_digital_details_tab_panel() {
 			'desc_tip'      => true,
 			'description'   => __( 'Enter the licence that is associated with this file.', 'ss-wc-digital-details' ),
 			'wrapper_class' => 'hide_if_variable',
-			'style'         => 'min-width: 150px;'
+			'style'         => 'width: 300px;'
 		)
 	);
 
@@ -410,23 +410,25 @@ function ss_wc_save_digital_details_tab_panel( $post_id ) {
 		delete_post_meta( $post_id, '_live_preview' );
 	}
 
+	// Multiselect fields
+
 	// Orientation
 	if ( isset( $_POST['_orientation'] ) ) {
-		update_post_meta( $post_id, '_orientation', wc_clean( $_POST['_orientation'] ) );
+		update_post_meta( $post_id, '_orientation', array_filter( array_map( 'wc_clean', (array) $_POST['_orientation'] ) ) );
 	} else {
 		delete_post_meta( $post_id, '_orientation' );
 	}
 
 	// Requirements
 	if ( isset( $_POST['_requirements'] ) ) {
-		update_post_meta( $post_id, '_requirements', wc_clean( $_POST['_requirements'] ) );
+		update_post_meta( $post_id, '_requirements', array_filter( array_map( 'wc_clean', (array) $_POST['_requirements'] ) ) );
 	} else {
 		delete_post_meta( $post_id, '_requirements' );
 	}
 
 	// Minimum Browser Requirement
 	if ( isset( $_POST['_minimum_browser_requirement'] ) ) {
-		update_post_meta( $post_id, '_minimum_browser_requirement', wc_clean( $_POST['_minimum_browser_requirement'] ) );
+		update_post_meta( $post_id, '_minimum_browser_requirement', array_filter( array_map( 'wc_clean', (array) $_POST['_minimum_browser_requirement'] ) ) );
 	} else {
 		delete_post_meta( $post_id, '_minimum_browser_requirement' );
 	}
@@ -435,14 +437,14 @@ function ss_wc_save_digital_details_tab_panel( $post_id ) {
 
 	// Dimensions
 	if ( isset( $_POST['_dimensions'] ) ) {
-		update_post_meta( $post_id, '_dimensions', esc_html( $_POST['_dimensions'] ) );
+		update_post_meta( $post_id, '_dimensions', wp_kses_post( trim( $_POST['_dimensions'] ) ) );
 	} else {
 		delete_post_meta( $post_id, '_dimensions' );
 	}
 
 	// Message to Customers
 	if ( isset( $_POST['_message_to_customers'] ) ) {
-		update_post_meta( $post_id, '_message_to_customers', esc_html( $_POST['_message_to_customers'] ) );
+		update_post_meta( $post_id, '_message_to_customers', wp_kses_post( trim( $_POST['_message_to_customers'] ) ) );
 	} else {
 		delete_post_meta( $post_id, '_message_to_customers' );
 	}
