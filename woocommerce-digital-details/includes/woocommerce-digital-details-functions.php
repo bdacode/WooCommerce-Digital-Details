@@ -96,25 +96,25 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	} // END if licence
 
 	// File Types
+	$terms = get_the_terms( $atts['product_id'], 'file_types' );
+	if ( $terms && ! is_wp_error( $terms ) ) {
+
 	echo '<li>
 			<dl>
 				<dt><i class="icon-filetype"></i>' . __( 'File Types', 'ss-wc-digital-details' ) . ' <i class="icon-chris"></i> </dt>
 				<dd class="filetypes"> ';
 
-				$terms = get_the_terms( $atts['product_id'], 'file_types' );
-				if ( $terms && ! is_wp_error( $terms ) ) {
-					$file_type = array();
+				$file_type = array();
 
-					foreach ( $terms as $term ) {
-						$file_type[] = $term->name;
-					}
-
-					$file_types = join( ", ", $file_type );
+				foreach ( $terms as $term ) {
+					$file_type[] = $term->name;
 				}
+
+				$file_types = join( ", ", $file_type );
 				echo $file_types . '</dd>
 			</dl>
 		</li>';
-	// END if file types
+	} // END if file types
 
 	// File Size
 	if ( !empty( $file_size ) ) {
