@@ -51,40 +51,41 @@ function ss_wc_digital_details_shortcode( $atts ) {
 	$is_tileable = get_post_meta( $atts['product_id'], '_is_tileable', true );
 	// Is Layered?
 	$is_layered = get_post_meta( $atts['product_id'], '_is_layered', true );
+	// Is Vector?
+	$is_vector = get_post_meta( $atts['product_id'], '_is_vector', true );
 	// Is Fluid Layout?
 	$is_fluid_layout = get_post_meta( $atts['product_id'], '_is_fluid_layout', true );
 	// Is Fixed Layout?
 	$is_fixed_layout = get_post_meta( $atts['product_id'], '_is_fixed_layout', true );
 	// Is Responsive Layout?
 	$is_responsive = get_post_meta( $atts['product_id'], '_is_responsive_layout', true );
-	// Is Vector?
-	$is_vector = get_post_meta( $atts['product_id'], '_is_vector', true );
-	// DPI Size
-	$dpi_size = get_post_meta( $atts['product_id'], '_dpi_size', true );
 	// Columns
 	$columns = get_post_meta( $atts['product_id'], '_columns', true );
-	// Orientation
-	$orientation = get_post_meta( $atts['product_id'], '_orientation', true );
-	// Requirements
-	$requirements = get_post_meta( $atts['product_id'], '_requirements', true );
 	// Minimum Browser Requirement
 	$minimum_browser_requirements = get_post_meta( $atts['product_id'], '_minimum_browser_requirement', true );
 	// Dimensions
 	$dimensions = get_post_meta( $atts['product_id'], '_dimensions', true );
-	// Message to Customers
-	$message_to_customers = get_post_meta( $atts['product_id'], '_message_to_customers', true );
+	// Orientation
+	$orientation = get_post_meta( $atts['product_id'], '_orientation', true );
+	// DPI Size
+	$dpi_size = get_post_meta( $atts['product_id'], '_dpi_size', true );
+	// Requirements
+	$requirements = get_post_meta( $atts['product_id'], '_requirements', true );
+	// Live Preview
+	$live_preview = get_post_meta( $atts['product_id'], '_live_preview', true );
 
 	// Now we display the post meta data.
-	echo '<p>' . __( 'Product Details', 'ss-wc-digital-details' ) . '</p>';
+	//echo '<p>' . __( 'Product Details', 'ss-wc-digital-details' ) . '</p>';
 
-	echo '<ul class="product-meta digital-details">' .
-		. '<li>
+	echo '<ul class="product-meta digital-details">
+		<li>
 			<dl>
 				<dt><i class="icon-calendar"></i>' . __( 'Date', 'ss-wc-digital-details' ) . '</dt>
-				<dd>' . the_date( 'j M, Y' ) . '</dd>
+				<dd>' . get_the_date( 'j M, Y' ) . '</dd>
 			</dl>
 		</li>';
 
+	// Licence
 	if ( !empty( $licence ) ) {
 	echo '<li>
 			<dl>
@@ -94,6 +95,7 @@ function ss_wc_digital_details_shortcode( $atts ) {
 		</li>';
 	} // END if licence
 
+	// File Types
 	echo '<li>
 			<dl>
 				<dt><i class="icon-filetype"></i>' . __( 'File Types', 'ss-wc-digital-details' ) . ' <i class="icon-chris"></i> </dt>
@@ -114,6 +116,7 @@ function ss_wc_digital_details_shortcode( $atts ) {
 		</li>';
 	// END if file types
 
+	// File Size
 	if ( !empty( $file_size ) ) {
 	echo '<li>
 			<dl>
@@ -123,7 +126,28 @@ function ss_wc_digital_details_shortcode( $atts ) {
 		</li>';
 	} // END if file size
 
-	if ( !empty( $layered ) && $layered == 'yes' ) {
+	// Web Font
+	if ( !empty( $is_web_font ) && $is_web_font == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-font"></i>' . __( 'Web Font', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if web font
+
+	// Is Tileable
+	if ( !empty( $is_tileable ) && $is_tileable == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-tileable"></i>' . __( 'Tileable', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if tileable
+
+	// Layered
+	if ( !empty( $is_layered ) && $is_layered == 'yes' ) {
 	echo '<li>
 			<dl>
 				<dt><i class="icon-layered"></i>' . __( 'Layered', 'ss-wc-digital-details' ) . '</dt>
@@ -132,18 +156,131 @@ function ss_wc_digital_details_shortcode( $atts ) {
 		</li>';
 	} // END if layered
 
+	// Fluid Layout
+	if ( !empty( $is_fluid_layout ) && $is_fluid_layout == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-fluid-layout"></i>' . __( 'Fluid Layout', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if fluid layout
+
+	// Fixed Layout
+	if ( !empty( $is_fixed_layout ) && $is_fixed_layout == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-fixed-layout"></i>' . __( 'Fixed Layout', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if fixed layout
+
+	// Responsive Layout
+	if ( !empty( $is_responsive_layout ) && $is_responsive_layout == 'yes' ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-responsive-layout"></i>' . __( 'Responsive Layout', 'ss-wc-digital-details' ) . '</dt>
+				<dd>Yes</dd>
+			</dl>
+		</li>';
+	} // END if fluid layout
+
+	// Columns
+	if ( !empty( $columns ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-columns"></i>'. __( 'Columns', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . $columns . '</dd>
+			</dl>
+		</li>';
+	} // END if columns
+
+	// Minimum Browser
+	if ( !empty( $minimum_browser_requirements ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-browser"></i>'. __( 'Minimum Browsers', 'ss-wc-digital-details' ) . '</dt>
+				<dd>';
+
+				foreach( $minimum_browser_requirements as $key => $browser ) {
+					$browsers[] = $browser;
+				}
+
+				$browsers = join( ", ", $browsers );
+
+				echo $browsers . '</dd>
+			</dl>
+		</li>';
+	} // END if minimum browser
+
+	// Dimensions
 	if ( !empty( $dimensions ) ) {
 	echo '<li>
 			<dl>
 				<dt><i class="icon-size"></i>'. __( 'Dimensions', 'ss-wc-digital-details' ) . '</dt>
-				<dd>' . $dimensions . '</dd>
+				<dd>' . wpautop( $dimensions ) . '</dd>
 			</dl>
 		</li>';
 	} // END if dimensions
+
+	// Orientation
+	if ( !empty( $orientation ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-orientation"></i>'. __( 'Orientation', 'ss-wc-digital-details' ) . '</dt>
+				<dd>';
+				foreach( $orientation as $key => $rotation ) {
+					echo $rotation;
+				}
+				echo '</dd>
+			</dl>
+		</li>';
+	} // END if orientation
+
+	// DPI Size
+	if ( !empty( $dpi_size ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-dpi-size"></i>'. __( 'DPI Size', 'ss-wc-digital-details' ) . '</dt>
+				<dd>' . $dpi_size . ' DPI</dd>
+			</dl>
+		</li>';
+	} // END if dpi size
+
+	// Requirements
+	if ( !empty( $requirements ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-requirements"></i>'. __( 'Requirements', 'ss-wc-digital-details' ) . '</dt>
+				<dd>';
+
+				foreach( $requirements as $key => $requirement ) {
+					$required[] = $requirement;
+				}
+
+				$required = join( ", ", $required );
+
+				echo $required . '</dd>
+			</dl>
+		</li>';
+	} // END if requirement
+
+	// Live Preview
+	if ( !empty( $live_preview ) ) {
+	echo '<li>
+			<dl>
+				<dt><i class="icon-web"></i>'. __( 'Live Preview', 'ss-wc-digital-details' ) . '</dt>
+				<dd><a class="button alt custom" href="' . $live_preview . '" target="_blank">'. __( 'View Live Preview', 'ss-wc-digital-details' ) . '</a></dd>
+			</dl>
+		</li>';
+	} // END if live preview
 
 	echo '</ul>'; // End of list
 
 	// You can add anything after everything has been displayed.
 	do_action( 'ss_wc_shortcode_after_digital_details' );
+
+	return ob_get_clean();
 }
 add_shortcode( 'digital_details', 'ss_wc_digital_details_shortcode' );
